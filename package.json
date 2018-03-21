@@ -1,6 +1,6 @@
 {
   "name": "react-skeleton-webpack-plugin",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A webpack plugin for generating skeleton of pages",
   "main": "lib/index.js",
   "files": [
