@@ -4,7 +4,6 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import Skeleton1 from './Skeleton1';
 import Skeleton2 from './Skeleton2';

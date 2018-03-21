@@ -38,7 +38,7 @@ export function generateRouterScript(
     entryName
 ) {
     // format routes if it's an object
-    if (module.exports.isObject(routes)) {
+    if (isObject(routes)) {
         routes = Object.keys(routes).map(key => {
             return {
                 path: key,

@@ -18,9 +18,7 @@ function resolve(dir) {
 module.exports = merge(baseWebpackConfig, {
     target: 'node',
     devtool: false,
-    entry: {
-        app: resolve('./src/entry-skeleton.js')
-    },
+    entry: resolve('./src/entry-skeleton.js'),
     output: Object.assign({}, baseWebpackConfig.output, {
         libraryTarget: 'commonjs2'
     }),

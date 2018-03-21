@@ -10,6 +10,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import ReactDOMServer from 'react-dom/server';
 import MFS from 'memory-fs';
 import requireFromString from 'require-from-string';
+import {isObject} from './util';
 
 export default async function(serverWebpackConfig, {quiet = false}) {
     // get entry name from webpack.conf
@@ -62,7 +63,11 @@ export default async function(serverWebpackConfig, {quiet = false}) {
         skeletonCss = mfs.readFileSync(outputCssPath, 'utf-8');
     }
 
-    const skeletonHtml = requireFromString(bundle, serverWebpackConfig.output.filename);
+    let skeletonHtml = requireFromString(bundle, serverWebpackConfig.output.filename);
+
+    if (isObject) {
+        skeletonHtml = skeletonHtml.default;
+    }
 
     return {skeletonHtml, skeletonCss};
 };
