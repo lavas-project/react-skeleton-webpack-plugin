@@ -6,7 +6,7 @@ react-skeleton-webpack-plugin
 [![Coverage Status](https://coveralls.io/repos/github/lavas-project/react-skeleton-webpack-plugin/badge.svg?branch=master)](https://coveralls.io/github/lavas-project/react-skeleton-webpack-plugin)
 [![NPM downloads](https://img.shields.io/npm/dm/react-skeleton-webpack-plugin.svg)](https://npmjs.com/package/react-skeleton-webpack-plugin)
 
-English|[中文](./README-zh-CN.md)
+English|[中文](./README.zh-CN.md)
 
 This is a Webpack plugin based on React which generates Skeleton Screen for SPA and MPA.
 A Skeleton Screen includes DOM and Styles inlined in HTML during the building process.
