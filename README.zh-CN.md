@@ -6,29 +6,31 @@ react-skeleton-webpack-plugin
 [![Coverage Status](https://coveralls.io/repos/github/lavas-project/react-skeleton-webpack-plugin/badge.svg?branch=master)](https://coveralls.io/github/lavas-project/react-skeleton-webpack-plugin)
 [![NPM downloads](https://img.shields.io/npm/dm/react-skeleton-webpack-plugin.svg)](https://npmjs.com/package/react-skeleton-webpack-plugin)
 
-English|[中文](./README-zh-CN.md)
+[English](./README.md)|中文
 
-This is a Webpack plugin based on React which generates Skeleton Screen for SPA and MPA.
-A Skeleton Screen includes DOM and Styles inlined in HTML during the building process.
+这是一个基于 React 的 Webpack 插件，为应用生成骨架屏 Skeleton，减少白屏时间，在页面完全渲染之前提升用户感知体验。
+使用 React 服务端渲染在构建时渲染 Skeleton 组件，将 DOM 和样式内联到最终输出的 HTML 中。
 
-[Vue Version](https://github.com/lavas-project/vue-skeleton-webpack-plugin)
+- 支持 SPA 和 MPA
+- 支持 SPA 下按照多条路由路径展示不同 Skeleton
 
-## Getting Started
+[Vue 版本](https://github.com/lavas-project/vue-skeleton-webpack-plugin)
 
-Install：
+## 使用方法
+
+安装：
 ```bash
-npm install react-skeleton-webpack-plugin
+npm install vue-skeleton-webpack-plugin
 ```
 
-Run test cases：
+运行测试用例：
 ```bash
 npm run test
 ```
 
-Use in Webpack：
+在 Webpack 中引入插件：
 ```js
-// webpack.config.js
-
+// webpack.conf.js
 import SkeletonWebpackPlugin from 'react-skeleton-webpack-plugin';
 
 plugins: [
@@ -38,10 +40,8 @@ plugins: [
 ]
 ```
 
-A Webpack config for Skeleton is also required:
+其中需要传入供 Skeleton 使用的 Webpack 配置对象 `webpack.skeleton.conf`。一个简单的供 SPA 使用的示例大致如下：
 ```js
-// webpack.skeleton.conf
-
 module.exports = merge(baseWebpackConfig, {
     target: 'node',
     devtool: false,
@@ -64,7 +64,7 @@ module.exports = merge(baseWebpackConfig, {
 });
 ```
 
-The entry file `entry-skeleton.js` uses [React SSR](https://reactjs.org/docs/react-dom-server.html) to render Skeleton component：
+其中入口文件 `entry-skeleton.js` 使用 React SSR 渲染 Skeleton 组件：
 ```js
 // entry-skeleton.js
 
@@ -78,21 +78,22 @@ let html = ReactDOMServer.renderToStaticMarkup(<Skeleton />);
 export default html;
 ```
 
-## Options for Plugin
+## 参数说明
 
-This plugin support following options：
-- webpackConfig *required*, a Webpack config for Skeleton
-- insertAfter *optional*, mounting point to inject Skeleton DOM，default value is `'<div id="app">'`
-- router *optional*, used by multi-skeleton in SPA
-    - mode, router mode, `history|hash`
-    - routes, an array for routes, every route object contains:
-        - path, route path
-        - skeletonId, the id of Skeleton DOM
-- minimize *optional* minimize the JS code inject in HTML, default value is `true`
+插件包含以下参数：
+- webpackConfig *必填*，用于渲染 Skeleton 的 Webpack 配置对象
+- insertAfter *选填*，渲染 DOM 结果插入位置，默认值为 `'<div id="app">'`
+- router *选填* SPA 下配置各个路由路径对应的 Skeleton
+    - mode 路由模式，两个有效值 `history|hash`
+    - routes 路由数组，其中每个路由对象包含两个属性：
+        - path 路由路径
+        - skeletonId Skeleton DOM 的 id
+- minimize *选填* SPA 下是否需要压缩注入 HTML 的 JS 代码，默认开启
 
-## Examples
+## 示例
 
-See [examples](https://github.com/lavas-project/react-skeleton-webpack-plugin/examples).
-* [Single Skeleton in SPA](https://github.com/lavas-project/react-skeleton-webpack-plugin/blob/master/examples/simple/)
+可以参考[示例](https://github.com/lavas-project/react-skeleton-webpack-plugin/examples)。
+其中：
+* [SPA 下单个 Skeleton](https://github.com/lavas-project/react-skeleton-webpack-plugin/blob/master/examples/simple/)
 * [MPA](https://github.com/lavas-project/react-skeleton-webpack-plugin/blob/master/examples/multipage/)
-* [Multi Skeleton in SPA](https://github.com/lavas-project/react-skeleton-webpack-plugin/blob/master/examples/multi-skeleton/)
+* [SPA 下多个 Skeleton](https://github.com/lavas-project/react-skeleton-webpack-plugin/blob/master/examples/multi-skeleton/)
