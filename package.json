@@ -36,6 +36,7 @@
     "babel-register": "^6.23.0",
     "bluebird": "^3.4.7",
     "css-loader": "^0.28.0",
+    "coveralls": "^3.0.0",
     "fecs": "^1.4.0",
     "html-webpack-plugin": "^2.29.0",
     "memory-fs": "^0.4.1",
